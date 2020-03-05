@@ -1,0 +1,36 @@
+﻿<Window x:Class="Ocynkownia0811.anulujWjazdWyjazd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ocynkownia0811"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="anulujWjazdWyjazd" Height="300" Width="500">
+    <Grid Background="GhostWhite">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.3*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#DD2C00">
+                <TextBlock Name="txAnuluj" Text="Anuluj wjazd/wyjazd" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Opacity="0.7"/>
+            </Grid>
+
+            <materialDesign:PackIcon Kind="RemoveCircle" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="70" Height="70" Foreground="#DD2C00"/>
+            <TextBox Name="poleOpisAnuluj"    Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"    Grid.Column="1" Grid.Row="1" Margin="20,10"
+    AcceptsReturn="True"    TextWrapping="Wrap"   materialDesign:HintAssist.Hint="opis anulowania"  />
+            <Button  Name="wprowadzAnulujBTN"  Style="{StaticResource MaterialDesignRaisedButton}"    Width="200" Grid.Row="2" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="CheckCircleOutline" Margin="0,0,20,0" Width="20" Height="20"/>
+                    <TextBlock Text="Wprowadź"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

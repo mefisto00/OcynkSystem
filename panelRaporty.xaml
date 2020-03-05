@@ -1,0 +1,105 @@
+﻿<Window x:Class="Ocynkownia0811.panelRaporty"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="panelRaporty" Height="700" Width="1300" WindowStartupLocation="CenterScreen">
+       
+    <Grid>
+        <Grid Name="rpPanelOgolny">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition/>
+
+                <RowDefinition Height="0.25*"/>
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="0" Background="SteelBlue" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.75*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Panel RAPORTY I ZESTAWIENIA" FontSize="23" Grid.Column="0" Grid.Row="0" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Opacity="0.8" Margin="10,0" />
+                <TextBlock Text="Wszystkie protokoły" FontSize="15" Grid.Column="0" Grid.Row="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Opacity="0.8" Margin="10,0"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="rap_szukajka" Grid.Column="0" Margin="20,0" materialDesign:HintAssist.Hint="fraza szukana"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="20,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Button Name="rap_szukajTrawers" Grid.Column="1" Content="{materialDesign:PackIcon Magnify}"  ToolTip="Przeszukaj bazę protokołów pod kątem kryterium"  Width="60" Margin="0,0,40,0" />
+                    <Button Name="rap_resetujSzukajke" Grid.Column="1" Content="{materialDesign:PackIcon Refresh}" ToolTip="Zresetuj szukanie protokołów" Width="60" Margin="40,0,0,0" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+
+                </Grid.RowDefinitions>
+                <Button x:Name="pokazWszystkieProtokoly" Grid.Row="1" Grid.Column="0"
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"    Width="210"  ToolTip="Przydziel sobie nowe zadanie"   >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CheckboxMultipleBlankCircleOutline" Margin="0,0,15,0" VerticalAlignment="Bottom" Width="20" Height="20"/>
+                        <TextBlock Text="Spis wszystkich prot."/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="pokazZlecenia3" Grid.Row="1" Grid.Column="1"
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"    Width="210"  ToolTip="Przydziel sobie nowe zadanie" >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CheckboxMultipleBlankCircle" Margin="0,0,15,0" VerticalAlignment="Bottom" Width="20" Height="20"/>
+                        <TextBlock Text="Spis wykonanych prot."/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="pokazZlecenia2" Grid.Row="0" Grid.Column="2"
+    Style="{StaticResource MaterialDesignRaisedButton}"    Width="210"  ToolTip="Przydziel sobie nowe zadanie" Background="#FF006AD3" >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="User" Margin="0,0,15,0" VerticalAlignment="Bottom" Width="20" Height="20"/>
+                        <TextBlock Text="Spis zleceń"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="pokazZlecenia21" Grid.Row="1" Grid.Column="2"
+    Style="{StaticResource MaterialDesignRaisedButton}"    Width="210"  ToolTip="Przydziel sobie nowe zadanie" Background="#FF006AD3"  >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ReorderVertical" Margin="0,0,15,0" VerticalAlignment="Bottom" Width="20" Height="20"/>
+                        <TextBlock Text="Spis protokołów"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="pokazZlecenia23" Grid.Row="2" Grid.Column="2"
+    Style="{StaticResource MaterialDesignRaisedButton}"    Width="210"  ToolTip="Przydziel sobie nowe zadanie" Background="#FF006AD3" >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="TableRow" Margin="0,0,15,0" VerticalAlignment="Bottom" Width="20" Height="20"/>
+                        <TextBlock Text="Spis materiałów"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

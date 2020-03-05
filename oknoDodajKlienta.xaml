@@ -1,0 +1,51 @@
+﻿<Window x:Class="Ocynkownia0811.oknoDodajKlienta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ocynkownia0811"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Dodaj Klienta do Bazy"  Height="550" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Kind="UserAdd" Opacity="0.6" Height="30" Width="30" VerticalAlignment="Center" Margin="20,0"/>
+        <TextBox Name="xpoleNrZlecenia" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="nr zlecenia"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"    VerticalAlignment="Bottom" Margin="80,5,10,5"/>
+        <TextBox Name="xpoleNazwa" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="nazwa"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"    VerticalAlignment="Bottom" Margin="20,5"/>
+        <TextBox Name="xpoleAdres" Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="adres"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"    VerticalAlignment="Bottom" Margin="20,5"/>
+        <TextBox Name="xpoleKierowca" Grid.Column="1" Grid.Row="2" materialDesign:HintAssist.Hint="kierowca"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"    VerticalAlignment="Bottom" Margin="20,5"/>
+
+        <TextBox Name="xpolePojazd" Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="pojazd"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"    VerticalAlignment="Bottom" Margin="20,5"/>
+
+        <TextBox Name="xpoleRejestracja" Grid.Column="1" Grid.Row="3" materialDesign:HintAssist.Hint="rejestracja"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"    VerticalAlignment="Bottom" Margin="20,5"/>
+
+        <TextBox Name="xpoleOpis" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="opis"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"    VerticalAlignment="Bottom" Margin="20,5"/>
+
+        <TextBox Name="xPoleUwagi" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="uwagi"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"    VerticalAlignment="Bottom" Margin="20,5"/>
+
+        <Button Name="dodajDoBazyKlient" Grid.Column="0" Grid.Row="6" Margin="100,0,20,0"
+  Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Height="50" Width="50"
+  ToolTip="Dodaj klienta do bazy" HorizontalAlignment="Center" Click="DodajDoBazyKlient_Click" >
+            <materialDesign:PackIcon   Kind="plus"   Height="24"   Width="24" />
+        </Button>
+
+        <Button Name="dodwajDoBazyKlient" Grid.Column="1" Grid.Row="6" Margin="50,0,0,0"
+  Style="{StaticResource MaterialDesignFloatingActionLightButton}" Height="50" Width="50"
+  ToolTip="Resetuj formularz" HorizontalAlignment="Left" Click="DodajDoBazyKlient_Click" >
+            <materialDesign:PackIcon   Kind="Restart"   Height="24"   Width="24" />
+        </Button>
+
+    </Grid>
+</Window>

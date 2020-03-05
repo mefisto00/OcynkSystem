@@ -1,0 +1,273 @@
+﻿<Window x:Class="Ocynkownia0811.panelXFormowanie"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ocynkownia0811"
+          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"      
+        Title="panelXFormowanie" Height="700" Width="1300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid Name="pFormowanie1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition/>
+                
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+          
+
+            <Grid Grid.Row="0" Background="SteelBlue" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.75*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Panel FORMOWANIE" FontSize="23" Grid.Column="0" Grid.Row="0" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Opacity="0.8" Margin="10,0" />
+                <TextBlock Text="Wybór protokołów/materiałów" FontSize="15" Grid.Column="0" Grid.Row="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Opacity="0.8" Margin="10,0"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="fr_szukajka" Grid.Column="0" Margin="20,0" materialDesign:HintAssist.Hint="fraza szukana"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"  KeyDown="Fr_szukajka_KeyDown"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="20,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Button Name="fr_szukajProtokol" Grid.Column="1" Content="{materialDesign:PackIcon Magnify}"  ToolTip="Przeszukaj bazę protokołów pod kątem kryterium"  Width="60" Margin="0,0,40,0" Click="Fr_szukajProtokol_Click"/>
+                    <Button Name="fr_resetujSzukajkeProtokol" Grid.Column="1" Content="{materialDesign:PackIcon Refresh}" ToolTip="Zresetuj szukanie protokołów" Width="60" Margin="40,0,0,0" Click="Fr_resetujSzukajkeProtokol_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">                
+                <DataGrid Name="dgfrProtoMaterial" Margin="20,20" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="FullRow" HorizontalAlignment="Stretch" RowHeight="40">
+                    <DataGrid.Columns>
+                            <DataGridTextColumn Header="nr protokołu" Binding="{Binding nrProtokolu}"/>
+                        <DataGridTextColumn Header="nazwa" Binding="{Binding nazwa}"/>
+                        <DataGridTextColumn Header="ilosc" Binding="{Binding iloscLinia}"/>
+                        <DataGridTextColumn Header="waga" Binding="{Binding wagaLinia}"/>
+                        <DataGridTextColumn Header="magazyn" Binding="{Binding sektorMagazyn}"/>
+                            <DataGridTextColumn Header="gabaryt" Binding="{Binding czyGabaryt}"/>
+                            <DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                        <Button Name="okreslIloscFormaBTN" Style="{StaticResource MaterialDesignFlatButton}" Click="OkreslIloscFormaBTN_Click" Content="{materialDesign:PackIcon ArrowRight}"  ToolTip="Dodaj z okresleniem ilości/wagi"  />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Vertical">
+
+                        <TextBox Name="fpoleProtokol"  Margin="0,20"   Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"    VerticalAlignment="Top"    AcceptsReturn="True"    TextWrapping="Wrap"    MaxWidth="400"    materialDesign:HintAssist.Hint="numer protokołu"/>
+                        <TextBox Name="fpoleNazwaMaterialu"  Margin="0,20"   Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"    VerticalAlignment="Top"    AcceptsReturn="True"    TextWrapping="Wrap"    MaxWidth="400"    materialDesign:HintAssist.Hint="nazwa materiału"/>
+                    <TextBox Name="fpoleIloscWybrana"  Margin="0,20"  Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"    VerticalAlignment="Top"    AcceptsReturn="True"    TextWrapping="Wrap"    MaxWidth="400"    materialDesign:HintAssist.Hint="wybrana ilość do trawersy"/>
+                    <TextBox Name="fpoleWagaWybrana"  Margin="0,20"  Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"    VerticalAlignment="Top"    AcceptsReturn="True"    TextWrapping="Wrap"    MaxWidth="400"    materialDesign:HintAssist.Hint="wybrana waga do trawersy"/>
+                        <Button Name="przekazDoTrawersyBTN"  Content="{materialDesign:PackIcon ArrowRightThick}" Margin="0,20" ToolTip="przekaż do trawersy" Width="100"  Click="PrzekazDoTrawersyBTN_Click"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <ListView Name="lsWybrane" ItemsSource="{Binding}"  MaxHeight="400" SelectionMode="Single" Margin="20,10">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="Auto"        DisplayMemberBinding="{Binding l_nrProtokol }"        Header="nr protokołu" />
+                                <GridViewColumn Width="Auto"        DisplayMemberBinding="{Binding l_nazwaMat }"        Header="nazwa" />
+                                <GridViewColumn Width="Auto"        DisplayMemberBinding="{Binding l_ilosc }"        Header="ilosc" />
+                                <GridViewColumn Width="Auto"        DisplayMemberBinding="{Binding l_waga }"        Header="waga" />
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="llistaUsun" Style="{StaticResource MaterialDesignFlatButton}" Content="{materialDesign:PackIcon Close}" ToolTip="Usuń z listy"  Click="LlistaUsun_Click" />
+
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                            
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+
+              
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid>
+                    <Grid Background="LightSteelBlue" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+                        <Button Name="dodajSzczegolyTrawersuBTN"  Height="50" Grid.Column="2" 
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"    Width="210" Margin="20,0,0,0"    ToolTip="Wprowadź dane do bazy danych" Click="DodajSzczegolyTrawersuBTN_Click"  >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Szczegóły trawersu  "/>
+                                <materialDesign:PackIcon Kind="Crane" Margin="10,0,15,0" VerticalAlignment="Bottom" Width="20" Height="20"/>
+
+                            </StackPanel>
+                        </Button>
+
+                       
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Name="pFormowanie2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>               
+                <RowDefinition/>
+
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="0" Background="SteelBlue" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.75*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Panel FORMOWANIE" FontSize="23" Grid.Column="0" Grid.Row="0" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Opacity="0.8" Margin="10,0" />
+                <TextBlock Text="Uzupełnienie szczegółów trawers" FontSize="15" Grid.Column="0" Grid.Row="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Opacity="0.8" Margin="10,0"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+                    <TextBox Name="poleNrTrawers" Grid.Row="0" materialDesign:HintAssist.Hint="numer trawersy" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="20,0"/>
+                    <TextBox Name="poleNrDnia" Grid.Row="1" materialDesign:HintAssist.Hint="numer dnia" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="20,0"/>
+                    <TextBox Name="poleWagaFormowania" Grid.Row="2" materialDesign:HintAssist.Hint="waga z formowania" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="20,0"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <DatePicker Language="pl-PL"  Name="poleDataStartFormowania" Margin="40,0" Grid.Column="0" materialDesign:HintAssist.Hint="data startu formowania"  VerticalAlignment="Bottom" Width="200"/>
+                            <materialDesign:TimePicker Name="poleGodzinaStartFormowanie" Margin="40,0" Is24Hours="True" VerticalAlignment="Bottom"  Grid.Column="1"  Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Width="200" materialDesign:HintAssist.Hint="godzina startu formowania" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <DatePicker Language="pl-PL"  Name="poleDataStopFormowania" Margin="40,0" Grid.Column="0" materialDesign:HintAssist.Hint="data zakończenia formowania"  VerticalAlignment="Bottom" Width="200"/>
+                            <materialDesign:TimePicker Name="poleGodzinaStopFormowanie" Margin="40,0" Is24Hours="True" VerticalAlignment="Bottom"  Grid.Column="1"  Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Width="200" materialDesign:HintAssist.Hint="godzina zakończenia formowania" />
+                        </Grid>
+                    </StackPanel>
+                    <TextBox Name="poleKtoZatwierdzilFormowanie" Grid.Row="5" materialDesign:HintAssist.Hint="kto zatwierdzil formowanie" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="20,0"/>
+                    <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="7" Margin="10,0">
+                        <TextBlock Text="Potwierdzam wprowadzone dane:" Name="txPotwierdzenie" FontSize="12" Foreground="Black" FontWeight="SemiBold" Opacity="0.7" Margin="2" />
+                        <ComboBox Name="potwierdzenieCHK" materialDesign:HintAssist.Hint="wybór tak/nie" VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedValuePath="Content" SelectionChanged="PotwierdzenieCHK_SelectionChanged">
+                            <ComboBoxItem>TAK</ComboBoxItem>
+                            <ComboBoxItem>NIE</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ListView Name="lsWybrane2" ItemsSource="{Binding}"  MaxHeight="400" SelectionMode="Single" Margin="20,10">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="Auto"        DisplayMemberBinding="{Binding l_nrProtokol }"        Header="nr protokołu" />
+                                <GridViewColumn Width="Auto"        DisplayMemberBinding="{Binding l_nazwaMat }"        Header="nazwa" />
+                                <GridViewColumn Width="Auto"        DisplayMemberBinding="{Binding l_ilosc }"        Header="ilosc" />
+                                <GridViewColumn Width="Auto"        DisplayMemberBinding="{Binding l_waga }"        Header="waga" />
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="llistaUsun" Style="{StaticResource MaterialDesignFlatButton}" Content="{materialDesign:PackIcon Close}" ToolTip="Usuń z listy"  Click="LlistaUsun_Click" />
+
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+                
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid>
+                    <Grid Background="LightSteelBlue" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+
+                        <Button Name="cofnijDoWyboruFormowanieBTN"  Height="50" Grid.Column="0" 
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"    Width="210" Margin="20,0,0,0"    ToolTip="Wprowadź dane do bazy danych" Click="CofnijDoWyboruFormowanieBTN_Click"  >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ArrowLeftBold" Margin="10,0,15,0" VerticalAlignment="Bottom" Width="20" Height="20"/>
+
+                                <TextBlock Text="Cofnij do wyboru"/>
+
+                            </StackPanel>
+                        </Button>
+
+                        <Button Name="wprowadzTrawersDoBazyBTN"  Height="50" Grid.Column="2" 
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"    Width="210" Margin="20,0,0,0"    ToolTip="Wprowadź dane do bazy danych" Click="WprowadzTrawersDoBazyBTN_Click"  >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Zatwierdź trawersę"/>
+                                <materialDesign:PackIcon Kind="Check" Margin="10,0,15,0" VerticalAlignment="Bottom" Width="20" Height="20"/>
+
+                            </StackPanel>
+                        </Button>
+
+
+                    </Grid>
+                </Grid>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>
